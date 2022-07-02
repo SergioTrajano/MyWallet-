@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
+import dayjs from 'dayjs';
 
 
 function NewTransactionComponent({ user }) {
@@ -20,9 +21,13 @@ function NewTransactionComponent({ user }) {
             return;
         }
 
+        const isPositive = transactionType === 'entrada' ? true : false;
+
         const newTransaction = {
             value: transactionValue,
-            description
+            description,
+            isPositive,
+            date: dayjs().format('MM/DD/YYYY'),
         };
         const config = {
             headers: {
@@ -30,7 +35,7 @@ function NewTransactionComponent({ user }) {
             }
         };
 
-        const promise = axios.post('http://localhost:5011/transaction', newTransaction, config);
+        const promise = axios.post('http://localhost:5020/transaction', newTransaction, config);
         promise.then(() => {
             alert('Uma transação foi adicionada a sua carteira!');
             setTransactionValue('');

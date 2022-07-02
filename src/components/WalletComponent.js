@@ -5,6 +5,8 @@ import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+import OldTransaction from './OldTransactionComponent.js';
+
 function Wallet({ user, setUser}) {
     const [transactionHistory, setTransactionHIstory] = useState([]);
 
@@ -16,7 +18,7 @@ function Wallet({ user, setUser}) {
                 Authorization: `Bearer ${user.token}`
             }
         };
-        const promise = axios.get('http://localhost:5011/transaction', config);
+        const promise = axios.get('http://localhost:5020/transaction', config);
         promise.then((response) => setTransactionHIstory(response.data))
     }, [user])
 
@@ -32,6 +34,7 @@ function Wallet({ user, setUser}) {
             </Msg>;
         }
 
+        return transactionHistory.map( (transaction, i) => <OldTransaction key={i} transaction={transaction} />);
     }
     
 

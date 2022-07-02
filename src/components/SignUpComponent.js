@@ -29,7 +29,7 @@ function SignUp() {
             email,
             password,
         }
-        const promise = axios.post('http://localhost:5011/users', user);
+        const promise = axios.post('http://localhost:5020/users', user);
         promise.then(() => {
             alert('Cadastro realizado! Você já pode realizar o login!');
             navigate('/');

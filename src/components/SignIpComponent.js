@@ -27,7 +27,7 @@ function SignIpComponent({ setUser }) {
             password,
             }
         }
-        const promise = axios.get('http://localhost:5011/users', user);
+        const promise = axios.get('http://localhost:5020/users', user);
         promise.then( (res) => {
                 setUser(res.data);
                 navigate('/wallet');
@@ -107,6 +107,7 @@ const Container = styled.div`
             padding-left: 4.6vw;
             margin-bottom: 1.9vh;
             box-sizing: border-box;
+            font-family: 'Raleway', sans-serif;
 
             &::placeholder {
                 color: gray;
@@ -129,6 +130,7 @@ const Container = styled.div`
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
+            font-family: 'Raleway', sans-serif;
 
             &:disabled {
                 opacity: 0.8;

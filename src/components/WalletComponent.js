@@ -36,9 +36,28 @@ function Wallet({ user, setUser}) {
 
         return transactionHistory.map( (transaction, i) => <OldTransaction key={i} transaction={transaction} />);
     }
+
+    function calculateTotal() {
+        if (!transactionHistory.length) return <></>;
+
+        let total = 0;
+        transactionHistory.forEach(transaction => {
+            if (transaction.isPositive) total += Number(transaction.value);
+            else total -= Number(transaction.value);
+        });
+        let totalColor = total > 0 ? '#03AC00' : '#C70000';
+        console.log(total)
+
+        if (total === 0) totalColor = '#000000';
+
+        return <Total color={totalColor}>
+            <span>Saldo</span><span>{Number(total).toFixed(2)}</span>
+        </Total>;
+    }
     
 
     const transactions = formatTransactions();
+    const total = calculateTotal();
 
     return (
         <Container> 
@@ -48,6 +67,7 @@ function Wallet({ user, setUser}) {
             </div>
             <div>
                 {transactions}
+                {total}
             </div>
             <div>
                 <Link to={'/newTransaction/entrada'} >
@@ -96,9 +116,10 @@ const Container = styled.div`
         height: 66.86vh;
         box-sizing: border-box;
         background-color: #FFFFFF;
-        padding: 3.44vh 2.93vw 1.49vh 2.93vw;
+        padding: 3.44vh 2.93vw 4.49vh 2.93vw;
         margin: 3.29vh 0 1.94vh 0;
         border-radius: 5px;
+        position: relative;
     }
 
     > div:last-child {
@@ -147,4 +168,28 @@ const Msg = styled.div`
         max-width: 48vw;
         text-align: center;
     }
+`
+
+const Total = styled.div`
+    width: 80vw;
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 1.49vh;
+    left: 2.93vw;
+    font-size: 2.54vh;
+    line-height: 2.98vh;
+
+    span:first-child {
+        color: #000000;
+        font-weight: bold;
+    }
+
+    span:last-child {
+        color: ${props => props.color};
+    }
+
 `

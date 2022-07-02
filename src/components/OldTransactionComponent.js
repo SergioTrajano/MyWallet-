@@ -11,7 +11,7 @@ function OldTransaction({ transaction }) {
                 <span>{dayjs(transaction.date).format('DD/MM')}</span>
                 <p>{transaction.description}</p>
             </div>
-                <span>{transaction.value}</span>
+                <span>{Number(transaction.value).toFixed(2)}</span>
         </Container>
     )
 }
@@ -24,7 +24,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 2.99vh;
+    margin-bottom: 1.5vh;
 
     div {
         display: flex;
@@ -40,7 +40,7 @@ const Container = styled.div`
         span:first-child {
                 color: #C6C6C6;
                 font-size: 2.39vh;
-                line-height: 2.78;
+                line-height: 2.78vh;
                 font-family: 'Raleway', sans-serif;
                 margin-right: 4.5vw;
                 box-sizing: border-box;
@@ -51,7 +51,7 @@ const Container = styled.div`
     span:last-child {
         color: ${props => props.lastSpanColor};
         font-size: 2.39vh;
-        line-height: 2.78;
+        line-height: 2.78vh;
         font-family: 'Raleway', sans-serif;
     }
 `

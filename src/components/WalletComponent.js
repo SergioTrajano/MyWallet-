@@ -16,7 +16,7 @@ function Wallet({ user, setUser}) {
                 Authorization: `Bearer ${user.token}`
             }
         };
-        const promise = axios.get('/transaction', config);
+        const promise = axios.get('http://localhost:5011/transaction', config);
         promise.then((response) => setTransactionHIstory(response.data))
     }, [user])
 
@@ -47,13 +47,13 @@ function Wallet({ user, setUser}) {
                 {transactions}
             </div>
             <div>
-                <Link to={'/transaction/entrada'} >
+                <Link to={'/newTransaction/entrada'} >
                     <div>
                         <AiOutlinePlusCircle color='white' />
                         <p>Nova entrada</p>
                     </div>
                 </Link>
-                <Link to={'/transaction/saída'} >
+                <Link to={'/newTransaction/saída'} >
                     <div>
                         <AiOutlineMinusCircle color='white' />
                         <p>Nova saída</p>

@@ -4,7 +4,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function SignIpComponent() {
+function SignIpComponent({ setUser }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [disable, setDisable] = useState(false);
@@ -22,11 +22,14 @@ function SignIpComponent() {
         e.preventDefault();
         setDisable(true);
         const user = {
+            headers: {
             email,
             password,
+            }
         }
-        const promise = axios.get('http://localhost:5000/users', user);
-        promise.then( () => {
+        const promise = axios.get('http://localhost:5009/users', user);
+        promise.then( (res) => {
+                setUser(res.data);
                 navigate('/wallet');
         })
         promise.catch(() => {

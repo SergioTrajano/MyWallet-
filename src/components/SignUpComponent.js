@@ -18,6 +18,9 @@ function SignUp() {
 
         if (password !== confirmPassword) {
             alert('As senhas devem ser iguais!');
+            setDisable(false);
+            setPassword('');
+            setConfirmPassword('');
             return;
         }
 
@@ -26,7 +29,7 @@ function SignUp() {
             email,
             password,
         }
-        const promise = axios.post('http://localhost:5000/users', user);
+        const promise = axios.post('http://localhost:5009/users', user);
         promise.then(() => {
             alert('Cadastro realizado! Você já pode realizar o login!');
             navigate('/');

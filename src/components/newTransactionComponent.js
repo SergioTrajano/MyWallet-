@@ -3,21 +3,25 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import { ThreeDots } from 'react-loader-spinner';
 
 
 function NewTransactionComponent({ user }) {
     const { transactionType } = useParams();
     const [transactionValue, setTransactionValue] = useState('');
     const [description, setDescription] = useState('');
+    const [disable, setDisable] = useState(false);
 
     const navigate = useNavigate();
 
     function submit(e) {
         e.preventDefault();
+        setDisable(true);
 
         if (isNaN(transactionValue)) {
             alert('O valor deve ser um número positivo!');
-            setTransactionValue();
+            setTransactionValue('');
+            setDisable(false);
             return;
         }
 
@@ -40,9 +44,17 @@ function NewTransactionComponent({ user }) {
             alert('Uma transação foi adicionada a sua carteira!');
             setTransactionValue('');
             setDescription('');
+            setDisable(false);
         });
     }
 
+    function checkDisable() {
+        if (!disable) return <>Salvar {transactionType}</>;
+
+        return <ThreeDots color='white' />;
+    }
+
+    const buttonTag = checkDisable();
 
     return (
         <Container>
@@ -52,6 +64,7 @@ function NewTransactionComponent({ user }) {
                     placeholder='Valor'
                     type={'number'}
                     step='any'
+                    disabled={disable}
                     value={transactionValue}
                     onChange={(e) => setTransactionValue(e.target.value)}
                     required
@@ -60,12 +73,13 @@ function NewTransactionComponent({ user }) {
                     placeholder='Descrição'
                     type={'text'}
                     value={description}
+                    disabled={disable}
                     onChange={(e) => setDescription(e.target.value)}
                     required
                 />
-                <button type='submit'>Salvar {transactionType}</button>
+                <button type='submit' style={{PointerEvent: disable ? 'none' : 'initial'}}>{buttonTag} </button>
             </form>
-            <div onClick={() => navigate('/wallet')}>Voltar</div>
+            <div onClick={() => navigate('/wallet')} style={{pointerEvents: disable ? 'none' : 'initial'}}>Voltar</div>
         </Container>
     );
 }

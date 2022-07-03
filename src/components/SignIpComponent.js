@@ -62,7 +62,7 @@ function SignIpComponent({ setUser }) {
                 />
                 <button type='submit' disabled={disable}>{buttonTag}</button>
             </form>
-            <Link to={'/signUp'} >
+            <Link to={'/signUp'} style={{pointerEvents: disable ? 'none' : 'initial'}}>
                 Primeira vez? Cadastre-se!
             </Link>
         </Container>
@@ -143,8 +143,9 @@ const Container = styled.div`
         font-size: 2.2vh;
         line-height: 2.6vh;
         color: #FFFFFF;
-        text-decoration: none;
         margin-top: 5.4vh;
+        text-decoration: none;
         box-sizing: border-box;
+        font-family: 'Raleway', sans-serif;
     }
 `

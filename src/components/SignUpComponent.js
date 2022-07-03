@@ -89,7 +89,7 @@ function SignUp() {
                 />
                 <button type='submit'>{buttonComponent}</button>
             </form>
-            <Link to={'/'}>
+            <Link to={'/'} style={{pointerEvents: disable ? 'none' : 'initial'}} >
                 Já tem uma conta? Entre agora!
             </Link>
         </Container>

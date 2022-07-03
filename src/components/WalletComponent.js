@@ -18,7 +18,7 @@ function Wallet({ user, setUser}) {
                 Authorization: `Bearer ${user.token}`
             }
         };
-        const promise = axios.get('http://localhost:5020/transaction', config);
+        const promise = axios.get('http://localhost:5022/transaction', config);
         promise.then((response) => setTransactionHIstory(response.data))
     }, [user])
 

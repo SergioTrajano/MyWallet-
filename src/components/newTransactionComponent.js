@@ -39,7 +39,7 @@ function NewTransactionComponent({ user }) {
             }
         };
 
-        const promise = axios.post('http://localhost:5020/transaction', newTransaction, config);
+        const promise = axios.post('http://localhost:5022/transaction', newTransaction, config);
         promise.then(() => {
             alert('Uma transação foi adicionada a sua carteira!');
             setTransactionValue('');

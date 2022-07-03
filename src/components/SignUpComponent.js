@@ -29,7 +29,7 @@ function SignUp() {
             email,
             password,
         }
-        const promise = axios.post('http://localhost:5020/users', user);
+        const promise = axios.post('http://localhost:5022/users', user);
         promise.then(() => {
             alert('Cadastro realizado! Você já pode realizar o login!');
             navigate('/');
@@ -87,7 +87,7 @@ function SignUp() {
                     disabled={disable}
                     required
                 />
-                <button type='submit'>{buttonComponent}</button>
+                <button type='submit' disabled={disable}>{buttonComponent}</button>
             </form>
             <Link to={'/'} style={{pointerEvents: disable ? 'none' : 'initial'}} >
                 Já tem uma conta? Entre agora!

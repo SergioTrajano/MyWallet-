@@ -27,7 +27,7 @@ function SignIpComponent({ setUser }) {
             password,
             }
         }
-        const promise = axios.get('http://localhost:5020/users', user);
+        const promise = axios.get('http://localhost:5022/users', user);
         promise.then( (res) => {
                 setUser(res.data);
                 navigate('/wallet');

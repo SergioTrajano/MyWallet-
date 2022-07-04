@@ -13,6 +13,10 @@ function Wallet({ user, setUser}) {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!user) navigate('/');
+    });
+
+    useEffect(() => {
         const config = {
             headers: {
                 Authorization: `Bearer ${user.token}`
@@ -20,7 +24,7 @@ function Wallet({ user, setUser}) {
         };
         const promise = axios.get('http://localhost:5022/transaction', config);
         promise.then((response) => setTransactionHIstory(response.data))
-    }, [user])
+    }, [user]);
 
     function exit() {
         setUser({});
@@ -46,7 +50,6 @@ function Wallet({ user, setUser}) {
             else total -= Number(transaction.value);
         });
         let totalColor = total > 0 ? '#03AC00' : '#C70000';
-        console.log(total)
 
         if (total === 0) totalColor = '#000000';
 

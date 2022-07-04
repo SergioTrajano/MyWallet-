@@ -75,6 +75,8 @@ function SignUp() {
                     placeholder='Senha'
                     type={'password'}
                     value={password}
+                    minLength='8'
+                    maxLength={'16'}
                     onChange={(e) => setPassword(e.target.value)}
                     disabled={disable}
                     required
@@ -83,6 +85,8 @@ function SignUp() {
                     placeholder='Confirme a senha'
                     type={'password'}
                     value={confirmPassword}
+                    minLength='8'
+                    maxLength={'16'}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     disabled={disable}
                     required

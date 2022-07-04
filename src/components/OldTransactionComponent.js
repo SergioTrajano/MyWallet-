@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import dayjs from 'dayjs';
+import { IoIosClose } from "react-icons/io";
 
 function OldTransaction({ transaction }) {
 
@@ -11,7 +12,10 @@ function OldTransaction({ transaction }) {
                 <span>{dayjs(transaction.date).format('DD/MM')}</span>
                 <p>{transaction.description}</p>
             </div>
+            <div>
                 <span>{Number(transaction.value).toFixed(2)}</span>
+                <IoIosClose color='grey' />
+            </div>
         </Container>
     )
 }
@@ -48,10 +52,16 @@ const Container = styled.div`
     }
 
 
-    span:last-child {
-        color: ${props => props.lastSpanColor};
-        font-size: 2.39vh;
-        line-height: 2.78vh;
-        font-family: 'Raleway', sans-serif;
+    div:last-child {
+        display: flex;
+        
+
+        span {
+            color: ${props => props.lastSpanColor};
+            font-size: 2.39vh;
+            line-height: 2.78vh;
+            font-family: 'Raleway', sans-serif;
+        }
     }
+
 `

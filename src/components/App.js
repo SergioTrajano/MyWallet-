@@ -8,7 +8,7 @@ import NewTransactionComponent from './newTransactionComponent';
 import '../css/reset.css';
 
 function App() {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState('');
 
     return (
         <BrowserRouter>

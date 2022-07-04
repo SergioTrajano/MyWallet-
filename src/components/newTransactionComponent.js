@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -13,6 +13,10 @@ function NewTransactionComponent({ user }) {
     const [disable, setDisable] = useState(false);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user) navigate('/');
+    });
 
     function submit(e) {
         e.preventDefault();

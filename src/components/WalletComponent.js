@@ -22,7 +22,7 @@ function Wallet({ user, setUser}) {
                 Authorization: `Bearer ${user.token}`
             }
         };
-        const promise = axios.get('http://localhost:5022/transaction', config);
+        const promise = axios.get('https://back-end-project-mywallet.herokuapp.com/transaction', config);
         promise.then((response) => setTransactionHIstory(response.data))
     }, [user]);
 

@@ -19,7 +19,7 @@ Esta aplicação é uma carteira digital simplificada, para controle de transaç
 ## :computer:	 Tecnologias e Conceitos
 
 - React
-- Refresh tokens
+- Refresh tokens com uuid
 - Single-Page Application
 
 ***
